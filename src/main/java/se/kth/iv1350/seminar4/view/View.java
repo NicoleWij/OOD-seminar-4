@@ -19,6 +19,8 @@ public class View {
      */
     public View(Controller contr) {
         this.contr = contr;
+        contr.addSaleObserver(new TotalRevenueView());
+        contr.addSaleObserver(new TotalRevenueFileOutput());
     }
 
     /**
@@ -37,7 +39,7 @@ public class View {
 
         } catch (ServerDownException exc) {
             System.err.println("Database cannot be called, server is down.");
-            
+
         }
 
         System.out.println("A payment of 100 SEK was made");

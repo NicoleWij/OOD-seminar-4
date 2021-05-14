@@ -3,6 +3,7 @@ package se.kth.iv1350.seminar4.model;
 import se.kth.iv1350.seminar4.DTO.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalTime;
 
 /**
@@ -13,6 +14,7 @@ public class Sale {
     private ArrayList<Item> items = new ArrayList<Item>();
     private double totalPrice;
     private double totalVAT;
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
      * Creates a new instance and saves the time of the sale.
@@ -58,7 +60,23 @@ public class Sale {
      * @param Receipt the generated receipt for the sale
      */
     public Receipt completeSale(SaleDTO sale, PaymentDTO payment){
+        notifyObservers();
         return new Receipt(sale, payment);
+    }
+
+    private void notifyObservers(){
+        for(SaleObserver obs : saleObservers) {
+            obs.newSale(totalPrice);
+        }
+    }
+
+    /**
+     * Adds an observer that will be notified when a sale is completed. 
+     * 
+     * @param obs The observer to notify. 
+     */
+    public void addSaleObserver(SaleObserver obs) {
+        saleObservers.add(obs);
     }
 
     

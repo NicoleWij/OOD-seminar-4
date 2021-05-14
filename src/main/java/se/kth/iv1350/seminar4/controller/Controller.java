@@ -1,11 +1,15 @@
 package se.kth.iv1350.seminar4.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import se.kth.iv1350.seminar4.DTO.ItemDTO;
 import se.kth.iv1350.seminar4.DTO.PaymentDTO;
 import se.kth.iv1350.seminar4.DTO.SaleDTO;
 import se.kth.iv1350.seminar4.DTO.SaleInfoDTO;
 import se.kth.iv1350.seminar4.integration.*;
 import se.kth.iv1350.seminar4.model.Sale;
+import se.kth.iv1350.seminar4.model.SaleObserver;
 import se.kth.iv1350.seminar4.model.Receipt;
 import se.kth.iv1350.seminar4.model.Register;
 
@@ -18,6 +22,8 @@ public class Controller {
     private EASHandler eas;
     private Printer printer;
     private Register register;
+    private List<SaleObserver> saleObservers = new ArrayList<>();
+
 
     /**
      * This function generates a new instance of the controller
@@ -41,6 +47,9 @@ public class Controller {
      */
     public void startSale() {
         this.sale = new Sale();
+        for(SaleObserver obs : saleObservers){
+            sale.addSaleObserver(obs);
+        }
     }
 
 
@@ -64,8 +73,6 @@ public class Controller {
             System.out.println("FOR DEVELOPERS:" + exc.getMessage());
             throw exc;
         }
-
-
     }
 
 
@@ -87,5 +94,9 @@ public class Controller {
         printer.printReceipt(receipt);
 
         return (amount - sale.getTotalPrice());
+    }
+
+    public void addSaleObserver(SaleObserver obs) {
+        saleObservers.add(obs);
     }
 }
