@@ -2,6 +2,7 @@ package se.kth.iv1350.seminar4.view;
 
 import se.kth.iv1350.seminar4.controller.Controller;
 import se.kth.iv1350.seminar4.integration.ItemNotFoundException;
+import se.kth.iv1350.seminar4.integration.ServerDownException;
 
 /**
  * This is a placeholder for the real view. It contains a hardcoded execution with calls 
@@ -31,8 +32,12 @@ public class View {
             contr.enterItem("1identifier");
             System.out.println("Added an item with the identifier: 1identifier");
 
-        } catch (ItemNotFoundException e) {
+        } catch (ItemNotFoundException exc) {
             System.err.println("Invalid identifier entered, no item found.");
+
+        } catch (ServerDownException exc) {
+            System.err.println("Database cannot be called, server is down.");
+            
         }
 
         System.out.println("A payment of 100 SEK was made");

@@ -73,8 +73,8 @@ public class ControllerTest {
                 saleInfo.getItemDescription()
             );
             
-        } catch (ItemNotFoundException e) {
-            fail("Invalid identifier entered, no item found.");
+        } catch (Exception exc) {
+            fail("An exception was thrown on a valid identifier:" + exc);
         }
     }
 
@@ -94,8 +94,8 @@ public class ControllerTest {
                 0.01
             );
             
-        } catch (ItemNotFoundException e) {
-            fail("Invalid identifier entered, no item found.");
+        } catch (Exception exc) {
+            fail("An exception was thrown on a valid identifier:" + exc);
         }
     }
 }

@@ -48,8 +48,10 @@ public class Controller {
      * Adds another item to the sale
      * @param identifier The items identifier. Invalid identifiers are not handled.
      * @return saleInfoDTO information that will be shown on the screen in the view
+     * @throws ItemNotFoundException throws an exception when the item identifier is invalid
+     * @throws ServerDownException  throws an exception when the server is down
      */
-    public SaleInfoDTO enterItem(String identifier) throws ItemNotFoundException {
+    public SaleInfoDTO enterItem(String identifier) throws ItemNotFoundException, ServerDownException {
         if(sale.checkForDuplicate(identifier)){
             return sale.duplicateIdentifier(identifier);
         }
@@ -58,9 +60,9 @@ public class Controller {
             ItemDTO item = eis.findItem(identifier);
             return sale.addItem(item);
             
-        } catch (ItemNotFoundException itemNotFound) {
-            System.out.println("FOR DEVELOPERS:" + itemNotFound);
-            throw itemNotFound;
+        } catch (ItemNotFoundException | ServerDownException exc) {
+            System.out.println("FOR DEVELOPERS:" + exc.getMessage());
+            throw exc;
         }
 
 

@@ -24,19 +24,27 @@ public class EISHandler {
             new ItemDTO("God gröt", 0.20, 15.0, "Gammelmormors gröt", "3identifer")
             );
     }
+    
     /**
+     * /**
      * Finds the correct item from the external inventory system based on the items identifier
-     * @param identifier
-     * @return
+     * @param identifier identifier of the item
+     * @return returns the item with the same identifier
+     * @throws ItemNotFoundException throws an exception if the item identifier is not found
+     * @throws ServerDownException throws an exception if the server is down
      */
-    public ItemDTO findItem(String identifier) throws ItemNotFoundException{
+    public ItemDTO findItem(String identifier) throws ItemNotFoundException, ServerDownException {
+        if(identifier.equals("ServerDownIdentifier")){
+            throw new ServerDownException("Database cannot be called, server is down.");
+        }
+
         for (ItemDTO item : items){
             if(item.getIdentifier().equals(identifier)) {
                 return item;
             }
         }
 
-        throw new ItemNotFoundException("No item found with the specified identifier.");
+        throw new ItemNotFoundException("No item found with the specified identifier: " + identifier);
     }
 
 
