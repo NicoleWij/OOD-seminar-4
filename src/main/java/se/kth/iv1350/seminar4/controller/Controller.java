@@ -41,7 +41,7 @@ public class Controller {
         this.printer = printer;
         this.dc = dc;
 
-        this.register = new Register();
+        this.register = Register.getInstance();
 
         System.out.println("Controller was started successfully. \n");
     }
@@ -80,13 +80,15 @@ public class Controller {
         }
     }
 
-    public void applyDiscount() {
+    public double applyDiscount() {
         SaleDTO saleDTO = this.sale.makeSaleDTO();
         List<DiscountDTO> itemDiscounts = dc.findDiscounts(saleDTO, new ItemDiscount());
         List<DiscountDTO> saleDiscounts = dc.findDiscounts(saleDTO, new SaleDiscount());
 
         sale.applyItemDiscounts(itemDiscounts);
         sale.applyDiscount(saleDiscounts);
+
+        return saleDTO.getTotalPrice();
     }
 
 

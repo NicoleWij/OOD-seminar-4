@@ -7,10 +7,19 @@ public class Register {
     double amount;
 
     /**
-     * This function generates a new instance of a register
+     * Private constructor
      */
-    public Register(){
+    private Register(){
         this.amount = 1000;
+    }
+
+    private static class RegisterHolder {
+        private static Register instance = new Register();
+    }
+
+
+    public static Register getInstance() {
+        return RegisterHolder.instance;
     }
 
     /**

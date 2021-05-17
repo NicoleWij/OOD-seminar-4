@@ -158,10 +158,6 @@ public class Sale {
     }
 
 
-    public void addDuplicateItem(ItemDTO item) {
-    }
-
-
     public void applyItemDiscounts(List<DiscountDTO> discounts){
         for(DiscountDTO discount : discounts){
             for(Item item : items) {
@@ -183,7 +179,7 @@ public class Sale {
                 totalPrice *= 1 - discount.getDiscountAmount();
             }
             else {
-                totalPrice -= 1 - discount.getDiscountAmount();
+                totalPrice -= discount.getDiscountAmount();
             }
 
         }

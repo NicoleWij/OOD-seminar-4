@@ -12,7 +12,7 @@ public class DCHandler {
 
     public DCHandler(){
         discounts.add(
-            new DiscountDTO(0.2, 100)
+            new DiscountDTO(0.3, 100)
         );
         discounts.add(
             new DiscountDTO("1identifier", 0.2)

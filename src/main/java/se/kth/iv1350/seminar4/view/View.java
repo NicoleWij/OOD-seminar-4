@@ -1,5 +1,6 @@
 package se.kth.iv1350.seminar4.view;
 
+import se.kth.iv1350.seminar4.DTO.SaleInfoDTO;
 import se.kth.iv1350.seminar4.controller.Controller;
 import se.kth.iv1350.seminar4.integration.ItemNotFoundException;
 import se.kth.iv1350.seminar4.integration.ServerDownException;
@@ -32,7 +33,10 @@ public class View {
 
         try {
             contr.enterItem("1identifier");
+            SaleInfoDTO saleInfo = contr.enterItem("1identifier");
             System.out.println("Added an item with the identifier: 1identifier");
+            System.out.println("\nItem: " + saleInfo.getCurrentItemName());
+            System.out.println("Item price: " + saleInfo.getCurrentItemPrice() + "\n");
 
         } catch (ItemNotFoundException exc) {
             System.err.println("Invalid identifier entered, no item found.");
@@ -43,10 +47,11 @@ public class View {
         }
 
         contr.applyDiscount();
+        System.out.println("Looking for and applying discounts.");
 
-        System.out.println("A payment of 100 SEK was made");
+        System.out.println("A payment of 100 SEK was made\n");
         double change = contr.pay(amount, currency);
-	    System.out.println("Change: " + change + " SEK");
+	    System.out.println("\nChange: " + change + " SEK");
 
         System.out.println("\n");
     }

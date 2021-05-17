@@ -16,6 +16,7 @@ public class Item {
      */
     public Item(ItemDTO item){
         this.VAT = item.getVAT();
+        this.name = item.getName();
         this.price = item.getPrice();
         this.description = item.getDescription();
         this.identifier = item.getIdentifier();
@@ -27,7 +28,7 @@ public class Item {
             price *= 1 - discount.getDiscountAmount();
         }
         else {
-            price -= 1 - discount.getDiscountAmount();
+            price -= discount.getDiscountAmount();
         }
     }
 
