@@ -3,10 +3,13 @@ package se.kth.iv1350.seminar4.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.kth.iv1350.seminar4.DTO.DiscountDTO;
 import se.kth.iv1350.seminar4.DTO.ItemDTO;
 import se.kth.iv1350.seminar4.DTO.PaymentDTO;
 import se.kth.iv1350.seminar4.DTO.SaleDTO;
 import se.kth.iv1350.seminar4.DTO.SaleInfoDTO;
+import se.kth.iv1350.seminar4.discount.ItemDiscount;
+import se.kth.iv1350.seminar4.discount.SaleDiscount;
 import se.kth.iv1350.seminar4.integration.*;
 import se.kth.iv1350.seminar4.model.Sale;
 import se.kth.iv1350.seminar4.model.SaleObserver;
@@ -20,6 +23,7 @@ public class Controller {
     private Sale sale;
     private EISHandler eis;
     private EASHandler eas;
+    private DCHandler dc;
     private Printer printer;
     private Register register;
     private List<SaleObserver> saleObservers = new ArrayList<>();
@@ -31,10 +35,11 @@ public class Controller {
      * @param eas as external account system
      * @param printer a printer that prints receipts
      */
-    public Controller(EISHandler eis, EASHandler eas, Printer printer) {
+    public Controller(EISHandler eis, EASHandler eas, Printer printer, DCHandler dc) {
         this.eis = eis;
         this.eas = eas;
         this.printer = printer;
+        this.dc = dc;
 
         this.register = new Register();
 
@@ -73,6 +78,15 @@ public class Controller {
             System.out.println("FOR DEVELOPERS:" + exc.getMessage());
             throw exc;
         }
+    }
+
+    public void applyDiscount() {
+        SaleDTO saleDTO = this.sale.makeSaleDTO();
+        List<DiscountDTO> itemDiscounts = dc.findDiscounts(saleDTO, new ItemDiscount());
+        List<DiscountDTO> saleDiscounts = dc.findDiscounts(saleDTO, new SaleDiscount());
+
+        sale.applyItemDiscounts(itemDiscounts);
+        sale.applyDiscount(saleDiscounts);
     }
 
 

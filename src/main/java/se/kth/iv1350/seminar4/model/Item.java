@@ -22,6 +22,15 @@ public class Item {
         this.quantity = 1;
     }
 
+    public void applyDiscount(DiscountDTO discount) {
+        if (discount.getDiscountAmount() < 1){
+            price *= 1 - discount.getDiscountAmount();
+        }
+        else {
+            price -= 1 - discount.getDiscountAmount();
+        }
+    }
+
     
     /** 
      * Returns the quantity of a specific item

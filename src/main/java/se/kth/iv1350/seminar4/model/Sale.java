@@ -160,4 +160,32 @@ public class Sale {
 
     public void addDuplicateItem(ItemDTO item) {
     }
+
+
+    public void applyItemDiscounts(List<DiscountDTO> discounts){
+        for(DiscountDTO discount : discounts){
+            for(Item item : items) {
+                if(item.getIdentifier().equals(discount.getIdOfDiscountItem())){
+                    item.applyDiscount(discount);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * This function will change the total price after applying the discount.
+     * @param discounts
+     */
+    public void applyDiscount(List<DiscountDTO> discounts) {
+        for (DiscountDTO discount : discounts){
+            if (discount.getDiscountAmount() < 1){
+                totalPrice *= 1 - discount.getDiscountAmount();
+            }
+            else {
+                totalPrice -= 1 - discount.getDiscountAmount();
+            }
+
+        }
+    }
 }

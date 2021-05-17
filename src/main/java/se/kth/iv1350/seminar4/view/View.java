@@ -42,6 +42,8 @@ public class View {
 
         }
 
+        contr.applyDiscount();
+
         System.out.println("A payment of 100 SEK was made");
         double change = contr.pay(amount, currency);
 	    System.out.println("Change: " + change + " SEK");
