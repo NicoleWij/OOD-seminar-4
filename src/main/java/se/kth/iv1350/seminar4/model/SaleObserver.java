@@ -1,7 +1,7 @@
 package se.kth.iv1350.seminar4.model;
 
 /**
- * SaleObserver
+ * The SaleObserver
  */
 public interface SaleObserver {
 

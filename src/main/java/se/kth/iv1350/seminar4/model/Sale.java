@@ -72,7 +72,6 @@ public class Sale {
 
     /**
      * Adds an observer that will be notified when a sale is completed. 
-     * 
      * @param obs The observer to notify. 
      */
     public void addSaleObserver(SaleObserver obs) {
@@ -157,7 +156,11 @@ public class Sale {
         return this.items;
     }
 
-
+    
+    /**
+     * Updates the item prices of the sale after applying discounts
+     * @param discounts The discount
+     */
     public void applyItemDiscounts(List<DiscountDTO> discounts){
         for(DiscountDTO discount : discounts){
             for(Item item : items) {

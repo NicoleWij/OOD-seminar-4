@@ -3,18 +3,10 @@ package se.kth.iv1350.seminar4.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import se.kth.iv1350.seminar4.DTO.DiscountDTO;
-import se.kth.iv1350.seminar4.DTO.ItemDTO;
-import se.kth.iv1350.seminar4.DTO.PaymentDTO;
-import se.kth.iv1350.seminar4.DTO.SaleDTO;
-import se.kth.iv1350.seminar4.DTO.SaleInfoDTO;
-import se.kth.iv1350.seminar4.discount.ItemDiscount;
-import se.kth.iv1350.seminar4.discount.SaleDiscount;
+import se.kth.iv1350.seminar4.DTO.*;
+import se.kth.iv1350.seminar4.discount.*;
 import se.kth.iv1350.seminar4.integration.*;
-import se.kth.iv1350.seminar4.model.Sale;
-import se.kth.iv1350.seminar4.model.SaleObserver;
-import se.kth.iv1350.seminar4.model.Receipt;
-import se.kth.iv1350.seminar4.model.Register;
+import se.kth.iv1350.seminar4.model.*;
 
 /**
  * This is the application's only controller. All calls through the model pass through this class.
@@ -80,6 +72,10 @@ public class Controller {
         }
     }
 
+    /**
+     * applies the discount based on what the customer has purchased.
+     * @return double the newly updated running total.
+     */
     public double applyDiscount() {
         SaleDTO saleDTO = this.sale.makeSaleDTO();
         List<DiscountDTO> itemDiscounts = dc.findDiscounts(saleDTO, new ItemDiscount());
@@ -112,6 +108,10 @@ public class Controller {
         return (amount - sale.getTotalPrice());
     }
 
+    /**
+     * The spevified observer will be added to the saleObservers arrayList
+     * @param obs the saleObserver
+     */
     public void addSaleObserver(SaleObserver obs) {
         saleObservers.add(obs);
     }

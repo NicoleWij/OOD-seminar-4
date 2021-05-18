@@ -7,6 +7,10 @@ import se.kth.iv1350.seminar4.DTO.DiscountDTO;
 import se.kth.iv1350.seminar4.DTO.SaleDTO;
 import se.kth.iv1350.seminar4.model.Item;
 
+/**
+ * Searches for individual item discounts. It implements the DiscountFinder class.
+ * @return the found discounts for the individual items.
+ */
 public class ItemDiscount implements DiscountFinder {
 
     @Override

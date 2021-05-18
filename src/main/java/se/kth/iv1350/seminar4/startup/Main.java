@@ -14,7 +14,7 @@ public class Main {
     /**
      * The main method used to start the application.
      * @param args The application does not take any command line parameters
-*/
+    */
     public static void main(String[] args) {
         EASHandler eas = new EASHandler();
         EISHandler eis = new EISHandler();

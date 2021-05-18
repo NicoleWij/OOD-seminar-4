@@ -13,9 +13,12 @@ class TotalRevenueFileOutput implements SaleObserver {
     private PrintWriter logFile;
     private double totalRevenue;
     
+    /**
+     * Generates a new isntance of the TotalRevenueFileOutput class
+     */
     TotalRevenueFileOutput() {
         totalRevenue = 0;
-        
+
         try {
             logFile = new PrintWriter(new FileWriter("total-revenue.txt"), true);
         } catch (IOException ex) {
@@ -24,6 +27,7 @@ class TotalRevenueFileOutput implements SaleObserver {
         }
     }
     
+    @Override
     public void newSale(double priceOfPurchase){
         totalRevenue += priceOfPurchase;
         logFile.println("Total revenue: " + totalRevenue);

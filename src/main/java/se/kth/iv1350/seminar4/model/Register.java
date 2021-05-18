@@ -13,11 +13,20 @@ public class Register {
         this.amount = 1000;
     }
 
+
+    /**
+     * This function updates the current instance of Register instead of creating
+     * a new one
+     */
     private static class RegisterHolder {
         private static Register instance = new Register();
     }
 
 
+    /**
+     * This method gets the register.
+     * @return Register the register
+     */
     public static Register getInstance() {
         return RegisterHolder.instance;
     }

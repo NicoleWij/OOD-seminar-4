@@ -5,7 +5,8 @@ import java.util.List;
 import se.kth.iv1350.seminar4.DTO.*;
 
 /**
- * DiscountFinder
+ * DiscountFinder is an interface that is used to find discounts. Different implementations
+ * of the interface can find discounts in different ways.
  */
 public interface DiscountFinder {
 

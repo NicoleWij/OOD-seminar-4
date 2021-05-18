@@ -23,6 +23,11 @@ public class Item {
         this.quantity = 1;
     }
 
+
+    /**
+     * Updates the price of the item based on a discount
+     * @param discount the discount that will be added to the price of the item
+     */
     public void applyDiscount(DiscountDTO discount) {
         if (discount.getDiscountAmount() < 1){
             price *= 1 - discount.getDiscountAmount();
