@@ -32,9 +32,9 @@ public class View {
         System.out.println("A new sale has started successfully.");
 
         try {
-            contr.enterItem("1identifier");
-            SaleInfoDTO saleInfo = contr.enterItem("1identifier");
-            System.out.println("Added an item with the identifier: 1identifier");
+            contr.enterItem("ServerDownIdentifier");
+            SaleInfoDTO saleInfo = contr.enterItem("ServerDownIdentifier");
+            System.out.println("Added an item with the identifier: ServerDownIdentifier");
             System.out.println("\nItem: " + saleInfo.getCurrentItemName());
             System.out.println("Item price: " + saleInfo.getCurrentItemPrice() + "\n");
 
@@ -47,7 +47,7 @@ public class View {
         }
 
         contr.applyDiscount();
-        System.out.println("Looking for and applying discounts.");
+        System.out.println("\nLooking for and applying discounts.");
 
         System.out.println("A payment of 100 SEK was made\n");
         double change = contr.pay(amount, currency);

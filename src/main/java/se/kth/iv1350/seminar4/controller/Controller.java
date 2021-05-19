@@ -67,7 +67,7 @@ public class Controller {
             return sale.addItem(item);
             
         } catch (ItemNotFoundException | ServerDownException exc) {
-            System.out.println("FOR DEVELOPERS:" + exc.getMessage());
+            System.out.println("FOR DEVELOPERS: " + exc.getMessage());
             throw exc;
         }
     }
